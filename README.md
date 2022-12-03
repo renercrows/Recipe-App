@@ -60,6 +60,14 @@ $ bundle install
 ```
 $ rails server
 ```
+5. Run in your terminal to create the database. 
+```
+$ reals db:create
+
+6. Run in your terminal to run migrations.
+```
+$ rails db:migration
+
 - **Navigate:** to http://localhost:3000/ 
 
 ## Author :writing_hand:
