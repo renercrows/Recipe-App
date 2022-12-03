@@ -10,6 +10,6 @@ class Ability
     can :read, :all
     can :manage, Food, user: user
     can :manage, Recipe, user: user
-    can :manage, RecipeFood, user: user
+    can :manage, RecipeFood, user:
   end
 end
