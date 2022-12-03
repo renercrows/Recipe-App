@@ -1,0 +1,27 @@
+<div class=recipe_card>
+  <%= link_to recipe do %>
+  <div class="recipe_container" id="<%= dom_id recipe %>">
+      <div class="recipe_description">
+      <p class="recipe_name">
+        <strong>Name:</strong>
+        <%= recipe.name %>
+      </p>
+    </div>
+    <div class="recipe_description">
+      <p>
+        <strong>Description:</strong>
+        <%= recipe.description %>
+      </p>
+
+      <p>
+        <strong>Public:</strong>
+        <%= recipe.public %>
+      </p>
+    </div>
+  </div>
+  <% end %>
+  <% if can? :destroy, recipe %>
+  <%= button_to "Remove", recipe, method: :delete, data: { confirm: "Are you sure?" }, class: "actions" %>
+  <% end %>
+</div>
+
