@@ -1,0 +1,23 @@
+<nav class="nav_bar">
+  <a href="/" class="nav_logo">Recipe App</a>
+  <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav_btn" %>
+  <% if user_signed_in? %>
+    <div class="nav_links">
+      <%= link_to 'Foods', foods_path, class: "nav_bar_link" %>
+      <%= link_to 'Recipes', recipes_path, class: "nav_bar_link" %>
+      <%= link_to 'Public Recipes', public_recipes_path, class: "nav_bar_link" %>
+      <%= link_to 'Inventories', inventories_path, class: "nav_bar_link" %>
+      <%= link_to 'Shopping List', shopping_list_path, class: "nav_bar_link" %>
+      <%= link_to 'Edit', edit_user_registration_path, class: "nav_bar_link" %>
+  <% else %>
+    </div>
+    <ul class="nav_bar_login">
+  <li>
+    <%= link_to 'Sign in', new_user_session_path, class: "nav_bar_login" %>
+  </li>
+  <li>
+    <%= link_to 'Register', new_user_registration_path, class: "nav_bar_login" %>
+  </li>
+</ul>
+  <% end %>
+</nav>

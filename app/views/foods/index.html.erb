@@ -1,0 +1,17 @@
+<div id="foods">
+  <h1 class="recipes_header">Foods</h1>
+  <%= link_to "Add food", new_food_path, class: "add-food" %>
+  <table>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Measurement</th>
+        <th>Unit Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <% @foods.each do |food| %>
+      <%= render food %>
+    <% end %>
+  </table>
+</div>

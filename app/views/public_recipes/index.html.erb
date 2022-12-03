@@ -1,0 +1,37 @@
+<div class="public-recipes">
+  <p style="color: red"><%= notice %></p>
+
+  <h1>Public Recipes</h1>
+
+  <div id="public_recipes">
+    <% @public_recipes.each do |public_recipes| %>
+    <div class="al">
+      <div class="rod">
+        <div class="ar">
+          <p>
+            <strong>Name:</strong>
+            <%= public_recipes.name %>
+          </p>
+          <p>
+            <strong>by: </strong>
+            <%= public_recipes.user.name %>
+          </p>
+        </div>
+        <div class="ar">
+          <p>
+              <span>Amount of food items to buy: </span>
+              <span>&nbsp;<%= public_recipes.foods.length %></span>
+          </p>
+          <p>
+              <span>Total value:</span>
+              <span>&nbsp;<%= @prices.sum %></span>
+          </p>
+        </div>
+      </div>
+      <p>
+        <%= link_to "Show this recipe", public_recipes , class: "action"%>
+      </p>
+    </div>  
+    <% end %>
+  </div>
+</div>

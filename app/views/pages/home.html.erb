@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="home">
+        <h1 class="home_page">join the Recipe App <%= current_user.name %>!</h1>
+    </div>
+    <div class="container-card">
+        <%= link_to foods_path do %>
+            <div class="card">
+                <h3 class="header">Foods</h3>
+                <%= image_tag "food-logo.jpg", class: 'food_img'%>
+            </div>
+        <% end %>
+        <%= link_to recipes_path do %>
+            <div class="card">
+                <h3 class="header">Recipes</h3>
+                <%= image_tag "recipes.png", class: 'food_img'%>
+            </div>
+        <% end %>
+        <%= link_to inventories_path do %>
+            <div class="card">
+                <h3 class="header">Inventory</h3>
+                <%= image_tag "food-inventory.png", class: 'img_food3'%>
+            </div>
+        <% end %>
+    </div>
+   
+</div>    
+
+ 
