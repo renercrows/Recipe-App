@@ -1,0 +1,28 @@
+<h1 class="inventories_header">List of Inventories</h1>
+
+<div id="inventories">
+  <% @inventories.each do |inventory| %>
+    <div id="inventory ">
+    <div class="flex width80">
+      <div class="flex-column ">
+        <%= render inventory %>
+        <p class="show_inventory">
+          <%= link_to "Show this inventory", inventory, class: "action" %>
+        </p>
+      </div>
+      <div> Lorem auhfasfh adoiufh adfuhad ifa hauihg uahdg asdiugh asduigoh a</div>
+    </div>
+  </div>
+
+  <% if can? :destroy, inventory %>
+  <%= button_to "Remove", inventory, method: :delete, data: { confirm: "Are you sure?" }, class: "actions" %>
+  <% end %>
+
+  <% end %>
+  <div class="new_inventory">
+  <%= link_to "New inventory", new_inventory_path, class: "action2"%>
+</div>
+</div>
+
+
+

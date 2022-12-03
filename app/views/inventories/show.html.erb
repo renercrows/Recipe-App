@@ -1,0 +1,57 @@
+<div class="show-inventory"> 
+<%= render @inventory %>
+
+<table>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <% InventoryFood.where(inventory_id: @inventory.id).each do |inventory_food| %>
+          <tr>
+          <td><%= Food.find_by(id: inventory_food.food_id).name %></td>
+          <td> <%= inventory_food.quantity %> </td>
+          <td>
+          <%= button_to "Remove", inventory_food, method: :delete, data: { confirm: "Are you sure?" } %>
+          </td>
+          </td> 
+          </tr>
+        <% end %>
+      
+    </tbody>
+</table>
+
+
+<div class="add_inventory_food_form">
+  <%= form_with(model: @inventory_food) do |form| %>
+    <% if @inventory_food.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@inventory_food.errors.count, "error") %> prohibited this inventory_food from being saved:</h2>
+
+        <ul>
+          <% @inventory_food.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div>
+      <div class="food_collection">
+      <%= collection_select(:inventory_food, :food_id, Food.all, :id, :name) %>
+      </div>
+      <div>
+        <%= form.label :quantity %> <br>
+        <%= form.number_field :quantity, placeholder: "Add quantity" %>
+      </div>
+        <%= collection_select(:inventory_food, :inventory_id, Inventory.all, :id, :name) %>
+      <div class="create_inventory_food_btn">
+        <%= form.submit %>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>

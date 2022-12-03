@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :recipe_foods
   resources :recipes
+  resources :inventory_foods
+  resources :inventories
   resources :foods
   resources :public_recipes
   resources :general_shopping_list

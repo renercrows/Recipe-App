@@ -15,6 +15,11 @@
         <span>Recipe: </span>
         <span>&nbsp;<%= Recipe.find(params[:recipe_id]).name %></span>
       </p>
+
+      <p>
+        <span>Inventor:</span>
+        <span>&nbsp;<%= Inventory.find(params[:inventory_id]).name %></span>
+      </p>
     </div>
 
     <table class="table">

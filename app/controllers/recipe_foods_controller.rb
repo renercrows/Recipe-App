@@ -1,11 +1,6 @@
 class RecipeFoodsController < ApplicationController
   before_action :set_recipe_food, only: %i[show edit update destroy]
 
-  # GET /recipefoods or /recipes.json
-  def index
-    @recipes = Recipefood.all
-  end
-
   # GET /recipe_foods/1 or /recipe_foods/1.json
   def show; end
 

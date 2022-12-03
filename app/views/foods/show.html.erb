@@ -1,9 +1,71 @@
-<p style="color: red"><%= notice %></p>
+<div class="recipe-show"> 
+  <%= render @recipe %>
+  <div class="link-btn-recipe">
+    <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "actions" %> |
+    <%= link_to "Back to recipes", recipes_path, class: "actions" %>
+    <button class="generate-shopping-list-btn"> Generate Shopping list </button>
+    <%= button_to "Destroy this recipe", @recipe, method: :delete, class: "delete" %>
+  </div>
 
-<%= render @food %>
+  <table>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
 
-<div>
-  <%= link_to "Edit this food", edit_food_path(@food) %> |
-  <%= link_to "Back to foods", foods_path %>
-  <%= button_to "Destroy this food", @food, method: :delete %>
+        <% RecipeFood.includes([:food]).where(recipe_id: @recipe.id).each do |recipe_food| %>
+          <tr>
+          <td><%= Food.find_by(id: recipe_food.food_id).name %></td>
+          <td> <%= recipe_food.quantity %> </td>
+          <td> $ <%= recipe_food.quantity.to_i * recipe_food.food.price %> </td>
+          <td>
+          <%= button_to "Modify", recipe_food, method: :edit, data: { confirm: "Are you sure?" } %>
+          <%= button_to "Remove", recipe_food, method: :delete, data: { confirm: "Are you sure?" } %>
+          </td>
+          </tr>
+        <% end %>
+
+    </tbody>
+  </table>
+  <div class="add_recipe_food_form">
+  <%= form_with(model: @recipe_food) do |form| %>
+    <% if @recipe_food.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@recipe_food.errors.count, "error") %> prohibited this recipe_food from being saved:</h2>
+        <ul>
+          <% @recipe_food.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+        <div class="food_collection_recipe">
+          <%= collection_select(:recipe_food, :food_id, Food.all, :id, :name) %>
+          <%= form.label :quantity, style: "display: block" %>
+          <%= form.number_field :quantity %>
+          <%= form.hidden_field :recipe_id, value: params[:id] %>
+          <div>
+            <%= form.submit id: "create_recipe_food_btn" %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="generate-shopping-list-container" id="pop-up">
+      <button id="close-btn" class="close-btn">&times;</button>
+      <%=form_with url: general_shopping_list_index_path, method: :get do |f| %>
+        <div>
+          <%= f.hidden_field :recipe_id, value: @recipe.id, required: true %>
+        </div>
+        <div>
+          <%= f.submit "Generate"  %>
+        </div>
+      <% end %>
+  </div>
+  </div>
 </div>

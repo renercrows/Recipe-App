@@ -1,16 +1,38 @@
-<h1>Shopping List 🛒</h1>
-
 <div class="shopping_list">
-  <table class="table">
-    <thead>
-    </thead>
-    <tbody>
-      <% value = 5%>
-      <% items = 4%>
-      <div class="button-cont">
-        <h4>Amount of Food items to buy : <%=items%></h4>
-        <h4>Total Value of Food Needed : <%=value%>$</h4>
-        <h4>Food Quantity Price : <%=total = value*items%>$</h4>
-      </div>
-    </tbody>
-  </table>
+    <h3>Shopping List</h3>
+    <div>
+      <p>
+        <span>Amount of food items to buy: </span>
+        <span>&nbsp;<%= InventoryFood.count %></span>
+      </p>
+
+      <p>
+        <span>Total value of food needed:</span>
+        <span>&nbsp;<%= @total %></span>
+      </p>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Food</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @foods.each do |food| %>
+          <% missing_food = RecipeFood.joins(:food).where(food_id: food.id).sum('quantity') - InventoryFood.joins(:food).where(food_id: food.id).sum('quantity') %>
+          <% if missing_food > 0 %>
+            <tr>
+              <td><%= food.name %></td>
+              <td><%= missing_food %></td>
+              <td>$<%= InventoryFood.joins(:food).where(food_id: food.id).sum('quantity') * food.price %></td>
+              <td><%= button_to "Delete", food_path(food.id), data: {turbo_method: :delete, turbo_confirm: 'are you sure'}, method: :delete %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
