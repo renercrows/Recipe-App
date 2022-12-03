@@ -3,7 +3,7 @@
 ![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white) 
 ![Rails](https://camo.githubusercontent.com/2f7aa65a22dedd331620c426fd36d88c01600b2c8ed750c41cc72b4d86364937/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7261696c732d2532334343303030302e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d727562792d6f6e2d7261696c73266c6f676f436f6c6f723d7768697465)
 
-# Rails Food recipe App 
+# Recipe App 
 
 > The Recipe app keeps track of all your recipes, and ingredients. You will be able to save ingredients, and keep track of what you have, create recipes. Also, the app allow you to make them public so anyone can access them. 
 
