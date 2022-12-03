@@ -3,19 +3,9 @@
   <div class="btn_recipe">
     <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "actions" %> |
     <%= link_to "Back to recipes", recipes_path, class: "actions" %>
-    <button class="shopping_btn"> Generate Shopping list </button>
     <%= button_to "Destroy this recipe", @recipe, method: :delete, class: "delete" %>
   </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Food</th>
-        <th>Quantity</th>
-        <th>Value</th>
-        <th>Action</th>
-      </tr>
-    </thead>
     <tbody>
 
         <% RecipeFood.includes([:food]).where(recipe_id: @recipe.id).each do |recipe_food| %>
@@ -45,27 +35,12 @@
           </ul>
         </div>
     <% end %>
-      <>
-        <div class="food_collection_recipe">
-          <%= collection_select(:recipe_food, :food_id, Food.all, :id, :name) %>
-          <%= form.label :quantity, style: "display: block" %>
-          <%= form.number_field :quantity %>
-          <%= form.hidden_field :recipe_id, value: params[:id] %>
-          <div>
-            <%= form.submit id: "create_recipe_food_btn" %>
-          </div>
-        </div>
-      </div>
   <% end %>
 
   <div class="shopping_container" id="pop-up">
-      <button id="close-btn" class="close-btn">&times;</button>
       <%=form_with url: general_shopping_list_index_path, method: :get do |f| %>
         <div>
           <%= f.hidden_field :recipe_id, value: @recipe.id, required: true %>
-        </div>
-        <div>
-          <%= f.submit "Generate"  %>
         </div>
       <% end %>
   </div>
