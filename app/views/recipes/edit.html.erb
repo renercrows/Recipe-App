@@ -1,0 +1,12 @@
+<div class="recipes_edit">
+  <h1>Editing recipe</h1>
+
+  <%= render "form", recipe: @recipe %>
+
+  <br>
+
+  <div>
+    <%= link_to "Show this recipe", @recipe, class: "actions"  %> |
+    <%= link_to "Back to recipes", recipes_path, class: "actions" %>
+  </div>
+</div>
