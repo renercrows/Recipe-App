@@ -30,13 +30,6 @@ class ShoppingListController < ApplicationController
 
     @ingredients.each do |ingredient|
       @ingredient_id = ingredient.food_id # only for printing on the screen
-      # @available = @foods.select { |food| food.id == ingredient.food_id }
-      # if ingredient.quantity > @available.quantity
-      #   ingredient.quantity -= @available.quantity
-      # else
-      # @index_of_available = @ingredients.find_index{ |x| x.id == @available.id }
-      # @ingredients.delete_at(index_of_available)
-      # end
     end
   end
 
