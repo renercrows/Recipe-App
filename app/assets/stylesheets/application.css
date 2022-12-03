@@ -14,7 +14,7 @@
  *= require_self
  */
 
- * {
+* {
   box-sizing: border-box;
 }
 
@@ -478,6 +478,7 @@ input[name="commit"] {
 
 .inventories_header {
   color: black;
+  text-align: center;
 }
 
 .actions3 {
@@ -486,10 +487,6 @@ input[name="commit"] {
   padding: 1%;
   margin-left: 25%;
   border-radius: 20px;
-}
-
-.inventories_header {
-  text-align: center;
 }
 
 #inventories {
